@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] { display: none !important; }
+
+@layer base {
+  :root {
+    --nude: #F9F6F1;
+    --carbon: #1A1A1A;
+    --gold: #C5A089;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans text-luxury-carbon bg-luxury-nude;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-serif;
+  }
+
+  /* Mejora de accesibilidad para focus */
+  :focus-visible {
+    @apply outline-none ring-1 ring-luxury-gold ring-offset-2;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-8 py-4 font-sans font-medium tracking-widest uppercase text-xs transition-all duration-500 border focus:outline-none;
+  }
+
+  .btn-primary {
+    @apply btn bg-luxury-carbon text-white border-luxury-carbon hover:bg-transparent hover:text-luxury-carbon;
+  }
+
+  .btn-outline {
+    @apply btn border-luxury-carbon text-luxury-carbon hover:bg-luxury-carbon hover:text-white;
+  }
+
+  .btn-gold {
+    @apply btn bg-luxury-gold text-white border-luxury-gold hover:bg-transparent hover:text-luxury-gold;
+  }
+
+  .section-container {
+    @apply max-w-7xl mx-auto px-6 lg:px-12 py-24 lg:py-32;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-serif text-luxury-carbon mb-6 text-center leading-tight;
+  }
+
+  .section-subtitle {
+    @apply text-sm md:text-base text-slate-600 text-center max-w-2xl mx-auto mb-16 uppercase tracking-[0.2em];
+  }
+
+  /* FAQ Accordion */
+  .faq-item {
+    @apply border-b border-luxury-carbon/10 bg-transparent;
+  }
+
+  .faq-button {
+    @apply flex items-center justify-between w-full py-8 text-left font-serif text-xl md:text-2xl text-luxury-carbon hover:text-luxury-gold transition-colors;
+  }
+
+  .faq-content {
+    @apply pb-8 text-slate-600 leading-relaxed font-sans text-lg max-w-3xl;
+  }
+
+  /* Navbar glassmorphism */
+  .nav-blur {
+    @apply bg-luxury-nude/80 backdrop-blur-md;
+  }
+
+  /* Antes / Después Slider */
+  .ba-container {
+    @apply relative overflow-hidden select-none touch-none aspect-video md:aspect-[16/9] rounded-sm;
+  }
+
+  /* Fallback para imágenes fallidas */
+  .img-fallback {
+    @apply relative bg-slate-100 flex items-center justify-center overflow-hidden;
+  }
+
+  .img-fallback img {
+    @apply opacity-0 transition-opacity duration-500;
+  }
+
+  .img-fallback img.loaded {
+    @apply opacity-100;
+  }
+
+  .img-fallback::before {
+    content: 'Cargando...';
+    @apply absolute inset-0 flex items-center justify-center text-[10px] uppercase tracking-widest text-slate-400 font-bold;
+  }
+
+  .img-fallback.error::before {
+    content: 'Imagen no disponible';
+    @apply text-red-300;
+  }
+
+  .ba-img {
+    @apply absolute inset-0 w-full h-full object-cover;
+  }
+
+  .ba-overlay {
+    @apply absolute inset-0 bg-black/5 opacity-0 hover:opacity-100 transition-opacity;
+  }
+
+  .ba-handle {
+    @apply absolute top-0 bottom-0 w-0.5 bg-white cursor-ew-resize z-10;
+  }
+
+  .ba-handle::after {
+    content: '';
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-xl flex items-center justify-center;
+  }
+}
+
+/* Custom styles for luxury appearance */
+.editorial-text {
+  @apply columns-1 md:columns-2 gap-12 text-lg leading-relaxed text-slate-600;
+}
+
+.gold-link {
+  @apply relative text-luxury-gold after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-luxury-gold hover:after:w-full after:transition-all after:duration-500;
+}

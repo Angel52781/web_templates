@@ -1,0 +1,31 @@
+{
+  "name": "02_template_estetica",
+  "version": "1.0.0",
+  "description": "Plantilla base para landing pages del sector salud y estética",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "salud",
+    "estetica",
+    "landing-page",
+    "tailwind",
+    "alpinejs",
+    "vite"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "vite": "^5.1.4"
+  },
+  "dependencies": {
+    "alpinejs": "^3.13.5",
+    "@alpinejs/collapse": "^3.13.5"
+  }
+}

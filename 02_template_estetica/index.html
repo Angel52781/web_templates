@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- SEO E-E-A-T / YMYL -->
+    <title>[Nombre de la Clínica] - Medicina Estética de Alta Precisión en [Ciudad]</title>
+    <meta name="description" content="[Clínica de Medicina Estética Premium] en [Ciudad]. Especialistas médicos en rejuvenecimiento facial, contorno corporal y tecnología láser avanzada. Resultados naturales y seguros bajo supervisión médica.">
+    <meta name="keywords" content="medicina estetica [ciudad], rejuvenecimiento facial, botox, acido hialuronico, depilacion laser, [nombre director medico]">
+    <link rel="canonical" href="https://tu-dominio-estetica.com/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tu-dominio-estetica.com/">
+    <meta property="og:title" content="Belleza Natural y Seguridad Médica - [Nombre de la Clínica]">
+    <meta property="og:description" content="Descubre la medicina estética de lujo. Valoración médica personalizada disponible.">
+    <meta property="og:image" content="/images/og-estetica.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+    <!-- Google Fonts: Serif para lujo, Sans para lectura -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- JSON-LD Structured Data (MedicalClinic, Physician, FAQ, Procedure) -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "MedicalClinic",
+        "name": "[Nombre Legal de la Clínica]",
+        "image": "https://tu-dominio-estetica.com/images/clinica-interior.jpg",
+        "telephone": "[Teléfono]",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "[Calle y número]",
+          "addressLocality": "[Ciudad]",
+          "postalCode": "[Código Postal]",
+          "addressCountry": "[País]"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 0.0,
+          "longitude": 0.0
+        },
+        "medicalSpecialty": "CosmeticSurgeon",
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "10:00",
+            "closes": "20:00"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Physician",
+        "name": "[Nombre del Director Médico]",
+        "medicalSpecialty": "Dermatology",
+        "identifier": "CMP [Número] / RNE [Número]",
+        "worksFor": {
+          "@type": "MedicalClinic",
+          "name": "[Nombre de la Clínica]"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Cómo es el proceso de valoración médica?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Realizamos un análisis facial o corporal completo con tecnología de diagnóstico digital para recomendar el tratamiento que mejor se adapte a tu anatomía y objetivos."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué marcas de productos utilizan?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Trabajamos exclusivamente con laboratorios líderes a nivel mundial (Allergan, Galderma, Merz) y equipos certificados por la FDA para asegurar resultados de alta calidad."
+            }
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "MedicalProcedure",
+        "name": "Ácido hialurónico",
+        "description": "Tratamiento de armonización facial para restaurar volúmenes y realzar la belleza natural.",
+        "preparation": "Valoración médica previa requerida."
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "MedicalProcedure",
+        "name": "Toxina botulínica",
+        "description": "Tratamiento para la atenuación de arrugas de expresión y rejuvenecimiento facial.",
+        "preparation": "Evaluación de la musculatura facial por especialista médico."
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "MedicalProcedure",
+        "name": "Láser facial",
+        "description": "Renovación cutánea mediante tecnología láser CO2 fraccionado para eliminar manchas y cicatrices.",
+        "preparation": "Protección solar estricta antes y después del procedimiento."
+      }
+    ]
+    </script>
+
+    <script type="module" src="/src/scripts/main.js"></script>
+    <style>[x-cloak] { display: none !important; }</style>
+</head>
+<body x-data="{ mobileMenuOpen: false, scrolled: false }" @scroll.window="scrolled = (window.pageYOffset > 50)">
+
+    <!-- 1. Navbar con Blur -->
+    <header :class="scrolled ? 'nav-blur shadow-sm h-20' : 'bg-transparent h-24'" class="fixed top-0 left-0 w-full z-50 transition-all duration-700">
+        <nav class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+            <!-- Logo Editorial -->
+            <a href="#" class="flex flex-col group">
+                <span class="text-2xl font-serif font-bold tracking-[0.3em] text-luxury-carbon uppercase leading-none">[Clínica]</span>
+                <span class="text-[8px] font-sans font-medium tracking-[0.5em] text-luxury-gold uppercase mt-2">Aesthetic Medicine</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="hidden lg:flex items-center space-x-12">
+                <a href="#tratamientos" class="text-[10px] font-medium uppercase tracking-[0.2em] text-luxury-carbon/70 hover:text-luxury-gold transition-colors">Tratamientos</a>
+                <a href="#antes-despues" class="text-[10px] font-medium uppercase tracking-[0.2em] text-luxury-carbon/70 hover:text-luxury-gold transition-colors">Resultados</a>
+                <a href="#especialistas" class="text-[10px] font-medium uppercase tracking-[0.2em] text-luxury-carbon/70 hover:text-luxury-gold transition-colors">Especialistas</a>
+                <a href="https://wa.me/[numero]" target="_blank" rel="noopener noreferrer" class="btn-primary py-3 px-8">Reservar Consulta</a>
+            </div>
+
+            <!-- Mobile Trigger -->
+            <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden text-luxury-carbon" aria-label="Abrir menú de navegación">
+                <svg x-show="!mobileMenuOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+                <svg x-show="mobileMenuOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" x-cloak><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div x-show="mobileMenuOpen" x-transition.opacity class="lg:hidden fixed inset-0 top-24 bg-luxury-nude z-40 p-12 flex flex-col items-center justify-center space-y-12" x-cloak>
+            <a @click="mobileMenuOpen = false" href="#tratamientos" class="text-2xl font-serif text-luxury-carbon">Tratamientos</a>
+            <a @click="mobileMenuOpen = false" href="#antes-despues" class="text-2xl font-serif text-luxury-carbon">Resultados</a>
+            <a @click="mobileMenuOpen = false" href="#especialistas" class="text-2xl font-serif text-luxury-carbon">Especialistas</a>
+            <a href="https://wa.me/[numero]" target="_blank" rel="noopener noreferrer" class="btn-primary w-full text-center">Solicitar Valoración</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- 2. Hero Fullscreen -->
+        <section class="relative h-screen flex items-center overflow-hidden">
+            <div class="absolute inset-0 bg-black/10 z-10"></div>
+            <!-- Placeholder Background Image -->
+            <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=2070&auto=format&fit=crop" 
+                 alt="Luxury Clinic Interior" 
+                 class="absolute inset-0 w-full h-full object-cover scale-105 animate-[pulse_10s_infinite]"
+                 fetchpriority="high"
+                 width="1920"
+                 height="1080">
+            
+            <div class="section-container relative z-20 text-center">
+                <span class="block text-white text-xs font-medium uppercase tracking-[0.5em] mb-8 animate-fade-in-down">Exclusividad Médica</span>
+                <h1 class="text-5xl md:text-7xl lg:text-8xl text-white font-serif italic mb-12 leading-tight">La ciencia de la <br> belleza natural.</h1>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                    <a href="https://wa.me/[numero]" target="_blank" rel="noopener noreferrer" class="bg-white text-luxury-carbon px-10 py-5 font-sans font-medium tracking-widest uppercase text-xs hover:bg-luxury-gold hover:text-white transition-all duration-500">
+                        Solicitar Valoración Médica
+                    </a>
+                    <a href="#tratamientos" class="text-white border-b border-white/30 pb-2 text-[10px] font-medium uppercase tracking-[0.3em] hover:border-white transition-all">
+                        Explorar Tratamientos
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Barra de Seguridad Clínica -->
+        <div class="py-16 bg-white border-b border-luxury-nude">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center items-center">
+                    <div class="space-y-2">
+                        <span class="block text-luxury-gold font-serif italic text-2xl">Resultados</span>
+                        <span class="block text-[8px] font-bold uppercase tracking-widest text-slate-400">100% Naturales</span>
+                    </div>
+                    <div class="space-y-2">
+                        <span class="block text-luxury-gold font-serif italic text-2xl">Médicos</span>
+                        <span class="block text-[8px] font-bold uppercase tracking-widest text-slate-400">Especialistas Colegiados</span>
+                    </div>
+                    <div class="space-y-2">
+                        <span class="block text-luxury-gold font-serif italic text-2xl">FDA / Digemid</span>
+                        <span class="block text-[8px] font-bold uppercase tracking-widest text-slate-400">Equipos Certificados</span>
+                    </div>
+                    <div class="space-y-2">
+                        <span class="block text-luxury-gold font-serif italic text-2xl">Lujo</span>
+                        <span class="block text-[8px] font-bold uppercase tracking-widest text-slate-400">Atención Personalizada</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Menú Filtrable de Tratamientos -->
+        <section id="tratamientos" class="section-container" x-data="{ filter: 'todos' }">
+            <h2 class="section-title italic">Nuestra Colección de Tratamientos</h2>
+            <p class="section-subtitle">Ciencia aplicada al rejuvenecimiento y contorno.</p>
+
+            <!-- Filtros Alpine -->
+            <div class="flex flex-wrap justify-center gap-8 mb-20 border-b border-luxury-carbon/5 pb-8">
+                <button @click="filter = 'todos'" :class="filter === 'todos' ? 'text-luxury-gold' : 'text-slate-400'" class="text-[10px] font-bold uppercase tracking-[0.3em] transition-colors">Todos</button>
+                <button @click="filter = 'facial'" :class="filter === 'facial' ? 'text-luxury-gold' : 'text-slate-400'" class="text-[10px] font-bold uppercase tracking-[0.3em] transition-colors">Facial</button>
+                <button @click="filter = 'corporal'" :class="filter === 'corporal' ? 'text-luxury-gold' : 'text-slate-400'" class="text-[10px] font-bold uppercase tracking-[0.3em] transition-colors">Corporal</button>
+                <button @click="filter = 'laser'" :class="filter === 'laser' ? 'text-luxury-gold' : 'text-slate-400'" class="text-[10px] font-bold uppercase tracking-[0.3em] transition-colors">Láser</button>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <!-- Tratamiento 1 -->
+                <div x-show="filter === 'todos' || filter === 'facial'" x-transition class="space-y-6 group">
+                    <div class="overflow-hidden aspect-[4/5] img-fallback">
+                        <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=2070&auto=format&fit=crop" 
+                             alt="Facial Treatment" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2s]"
+                             loading="lazy"
+                             width="800"
+                             height="1000"
+                             onload="this.classList.add('loaded')"
+                             onerror="this.parentElement.classList.add('error')">
+                    </div>
+                    <h3 class="text-2xl font-serif">Armonización Facial</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Ácido hialurónico de alta gama para restaurar volúmenes y realzar la belleza natural del rostro.</p>
+                    <a href="https://wa.me/[numero]" target="_blank" rel="noopener noreferrer" class="gold-link text-[10px] font-bold uppercase tracking-widest">Consultar Tratamiento</a>
+                </div>
+
+                <!-- Tratamiento 2 -->
+                <div x-show="filter === 'todos' || filter === 'corporal'" x-transition class="space-y-6 group">
+                    <div class="overflow-hidden aspect-[4/5] img-fallback">
+                        <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?q=80&w=2070&auto=format&fit=crop" 
+                             alt="Body Treatment" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2s]"
+                             loading="lazy"
+                             width="800"
+                             height="1000"
+                             onload="this.classList.add('loaded')"
+                             onerror="this.parentElement.classList.add('error')">
+                    </div>
+                    <h3 class="text-2xl font-serif">Esculpido Corporal</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Tecnología no invasiva para reducir medidas y tonificar áreas específicas con resultados médicos.</p>
+                    <a href="https://wa.me/[numero]" target="_blank" rel="noopener noreferrer" class="gold-link text-[10px] font-bold uppercase tracking-widest">Consultar Tratamiento</a>
+                </div>
+
+                <!-- Tratamiento 3 -->
+                <div x-show="filter === 'todos' || filter === 'laser'" x-transition class="space-y-6 group">
+                    <div class="overflow-hidden aspect-[4/5] img-fallback">
+                        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2070&auto=format&fit=crop" 
+                             alt="Laser Treatment" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2s]"
+                             loading="lazy"
+                             width="800"
+                             height="1000"
+                             onload="this.classList.add('loaded')"
+                             onerror="this.parentElement.classList.add('error')">
+                    </div>
+                    <h3 class="text-2xl font-serif">Láser CO2 Fraccionado</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Renovación total de la piel, eliminando manchas, cicatrices y arrugas con precisión médica.</p>
+                    <a href="https://wa.me/[numero]" target="_blank" rel="noopener noreferrer" class="gold-link text-[10px] font-bold uppercase tracking-widest">Consultar Tratamiento</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Sección Before/After -->
+        <section id="antes-despues" class="bg-white py-24">
+            <div class="section-container">
+                <div class="grid lg:grid-cols-2 gap-20 items-center">
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-serif italic mb-8">Excelencia en Resultados</h2>
+                        <p class="editorial-text mb-12">
+                            Creemos en la sutileza. Nuestros tratamientos buscan refrescar la apariencia, devolviendo la vitalidad sin alterar la esencia de cada paciente. <br><br>
+                            Cada procedimiento es realizado bajo estrictos protocolos médicos para garantizar seguridad y satisfacción.
+                        </p>
+                        <p class="text-[10px] font-bold text-slate-600 uppercase tracking-widest italic border-l border-luxury-gold pl-4">
+                            * Disclaimer: Los resultados varían según cada paciente. Se requiere valoración médica previa. Imágenes con consentimiento informado.
+                        </p>
+                    </div>
+                    
+                    <!-- Slider Comparativo -->
+                    <div class="ba-container">
+                        <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=1000&auto=format&fit=crop" alt="Después" class="ba-img" loading="lazy" width="1000" height="562">
+                        <div class="ba-after absolute inset-0">
+                            <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=1000&auto=format&fit=crop&sepia=100" alt="Antes" class="ba-img" loading="lazy" width="1000" height="562">
+                        </div>
+                        <div class="ba-handle"></div>
+                        <div class="absolute bottom-6 left-6 z-20 bg-white/10 backdrop-blur-md px-4 py-1 text-[8px] text-white uppercase tracking-widest font-bold">Antes</div>
+                        <div class="absolute bottom-6 right-6 z-20 bg-luxury-gold px-4 py-1 text-[8px] text-white uppercase tracking-widest font-bold">Después</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Director Médico -->
+        <section id="especialistas" class="bg-luxury-nude py-24">
+            <div class="section-container">
+                <div class="grid lg:grid-cols-2 gap-20 items-center">
+                    <div class="relative">
+                        <div class="aspect-[3/4] overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=2070&auto=format&fit=crop" 
+                                 alt="Dr. [Nombre]" 
+                                 class="w-full h-full object-cover"
+                                 loading="lazy"
+                                 width="600"
+                                 height="800">
+                        </div>
+                        <div class="absolute -bottom-12 -right-12 bg-white p-12 shadow-2xl hidden md:block max-w-sm">
+                            <span class="text-[10px] font-bold text-luxury-gold uppercase tracking-[0.3em] mb-4 block">Experiencia</span>
+                            <p class="text-sm italic text-slate-600 font-serif leading-relaxed">"La medicina estética es el equilibrio perfecto entre la anatomía y la armonía visual."</p>
+                        </div>
+                    </div>
+                    <div class="space-y-8">
+                        <span class="text-[10px] font-bold text-luxury-gold uppercase tracking-[0.5em]">Dirección Médica</span>
+                        <h2 class="text-4xl md:text-5xl font-serif">Dr. [Nombre del Especialista]</h2>
+                        <div class="space-y-2">
+                            <p class="font-bold text-luxury-carbon uppercase text-xs tracking-widest">CMP: [Número] / RNE: [Número]</p>
+                            <p class="text-slate-600 text-sm font-medium">Médico Cirujano especialista en Dermatología Estética.</p>
+                        </div>
+                        <p class="text-lg leading-relaxed text-slate-600">
+                            Con más de 15 años de trayectoria internacional, el Dr. [Nombre] lidera un equipo comprometido con la innovación y la seguridad del paciente, utilizando solo las mejores marcas y tecnologías del mundo.
+                        </p>
+                        <ul class="space-y-4 pt-4">
+                            <li class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-luxury-carbon">
+                                <div class="w-2 h-2 bg-luxury-gold rounded-full"></div>
+                                Miembro de la Sociedad de Medicina Estética
+                            </li>
+                            <li class="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-luxury-carbon">
+                                <div class="w-2 h-2 bg-luxury-gold rounded-full"></div>
+                                Certificación en Láser Médico Avanzado
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. FAQ con Acordeón -->
+        <section class="section-container" x-data="{ active: null }">
+            <h2 class="section-title italic">Consultas Frecuentes</h2>
+            <p class="section-subtitle">Claridad y transparencia en cada proceso.</p>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="faq-item">
+                    <button @click="active = (active === 1 ? null : 1)" class="faq-button" aria-label="Expandir pregunta sobre valoración médica">
+                        <span>¿Cómo es el proceso de valoración médica?</span>
+                        <svg :class="active === 1 ? 'rotate-45' : ''" class="w-6 h-6 transition-transform duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 4v16m8-8H4" /></svg>
+                    </button>
+                    <div x-show="active === 1" x-collapse class="faq-content" x-cloak>
+                        <p>Realizamos un análisis facial o corporal completo con tecnología de diagnóstico digital para recomendar el tratamiento que mejor se adapte a tu anatomía y objetivos.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button @click="active = (active === 2 ? null : 2)" class="faq-button" aria-label="Expandir pregunta sobre marcas de productos">
+                        <span>¿Qué marcas de productos utilizan?</span>
+                        <svg :class="active === 2 ? 'rotate-45' : ''" class="w-6 h-6 transition-transform duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 4v16m8-8H4" /></svg>
+                    </button>
+                    <div x-show="active === 2" x-collapse class="faq-content" x-cloak>
+                        <p>Trabajamos exclusivamente con laboratorios líderes a nivel mundial (Allergan, Galderma, Merz) y equipos certificados por la FDA para asegurar resultados de alta calidad.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. CTA Intermedio -->
+        <section class="bg-luxury-carbon py-24 text-center">
+            <div class="max-w-4xl mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-serif italic text-white mb-12 leading-relaxed">¿Lista para descubrir tu mejor versión?</h2>
+                <a href="https://wa.me/[numero]" target="_blank" rel="noopener noreferrer" class="btn-gold px-12 py-6">Solicitar Cita de Valoración</a>
+            </div>
+        </section>
+
+        <!-- 9. Contacto Final -->
+        <section id="contacto" class="section-container">
+            <div class="grid lg:grid-cols-2 gap-20">
+                <div class="space-y-12">
+                    <h2 class="text-4xl md:text-5xl font-serif italic">Visítanos en [Ciudad]</h2>
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-8">
+                            <div class="text-luxury-gold font-serif text-3xl">01</div>
+                            <div>
+                                <h4 class="text-xs font-bold uppercase tracking-[0.3em] mb-2 text-luxury-carbon">Ubicación</h4>
+                                <p class="text-slate-600">[Calle, Número, Colonia, Ciudad]</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-8">
+                            <div class="text-luxury-gold font-serif text-3xl">02</div>
+                            <div>
+                                <h4 class="text-xs font-bold uppercase tracking-[0.3em] mb-2 text-luxury-carbon">Atención</h4>
+                                <p class="text-slate-600">Lunes a Viernes: 10:00 — 20:00</p>
+                                <p class="text-slate-600">Sábados: 10:00 — 14:00</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-8">
+                            <div class="text-luxury-gold font-serif text-3xl">03</div>
+                            <div>
+                                <h4 class="text-xs font-bold uppercase tracking-[0.3em] mb-2 text-luxury-carbon">Contacto Directo</h4>
+                                <a href="tel:[numero]" class="text-xl font-serif text-luxury-carbon block mb-2">[Teléfono]</a>
+                                <a href="https://wa.me/[numero]" target="_blank" rel="noopener noreferrer" class="gold-link text-[10px] font-bold uppercase tracking-widest">WhatsApp Directo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Mapa Placeholder Editorial -->
+                <div class="bg-luxury-nude aspect-square md:aspect-video lg:aspect-square flex items-center justify-center border border-luxury-carbon/5 rounded-sm">
+                    <span class="text-[10px] font-bold uppercase tracking-[0.5em] text-slate-500">Google Maps Placement</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 10. Footer Premium Legal -->
+    <footer class="bg-white pt-24 pb-12 border-t border-luxury-nude">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-16 mb-24">
+                <div class="col-span-1 md:col-span-2 space-y-8">
+                    <a href="#" class="flex flex-col">
+                        <span class="text-2xl font-serif font-bold tracking-[0.3em] text-luxury-carbon uppercase leading-none">[Clínica]</span>
+                        <span class="text-[8px] font-sans font-medium tracking-[0.5em] text-luxury-gold uppercase mt-2">Aesthetic Medicine</span>
+                    </a>
+                    <p class="text-sm text-slate-600 leading-relaxed max-w-sm">
+                        Excelencia médica y estética en un entorno de lujo. Comprometidos con resultados naturales y la seguridad integral de nuestros pacientes.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-[10px] font-bold uppercase tracking-widest text-luxury-carbon mb-8">Tratamientos</h4>
+                    <ul class="space-y-4 text-[10px] font-medium uppercase tracking-widest text-slate-500">
+                        <li><a href="#" class="hover:text-luxury-gold transition-colors">Armonización Facial</a></li>
+                        <li><a href="#" class="hover:text-luxury-gold transition-colors">Contorno Corporal</a></li>
+                        <li><a href="#" class="hover:text-luxury-gold transition-colors">Láser Avanzado</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-[10px] font-bold uppercase tracking-widest text-luxury-carbon mb-8">Información</h4>
+                    <ul class="space-y-4 text-[10px] font-medium uppercase tracking-widest text-slate-500">
+                        <li><a href="#" class="hover:text-luxury-gold transition-colors">Consentimiento</a></li>
+                        <li><a href="#" class="hover:text-luxury-gold transition-colors">Privacidad</a></li>
+                        <li><a href="#" class="hover:text-luxury-gold transition-colors">Aviso Legal</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-luxury-nude pt-12 flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="space-y-4">
+                    <p class="text-[8px] font-bold uppercase tracking-[0.3em] text-slate-600">
+                        © 2026 [Nombre Legal]. CMP [Número] / RNE [Número].
+                    </p>
+                    <p class="text-[8px] font-medium text-slate-500 max-w-2xl leading-relaxed">
+                        * Disclaimer Médico: Todos los tratamientos son realizados por médicos colegiados. Los resultados pueden variar según las condiciones físicas de cada paciente. Esta página no sustituye una consulta médica presencial.
+                    </p>
+                </div>
+                <div class="flex gap-8 text-[8px] font-bold uppercase tracking-[0.3em] text-slate-600 shrink-0">
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="hover:text-luxury-gold transition-colors" aria-label="Siguenos en Instagram">Instagram</a>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="hover:text-luxury-gold transition-colors" aria-label="Siguenos en LinkedIn">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Flotante Minimal -->
+    <a href="https://wa.me/[numero]" target="_blank" rel="noopener noreferrer" class="fixed bottom-12 right-12 w-16 h-16 bg-luxury-carbon text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all z-50 group" aria-label="Contactar por WhatsApp">
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </a>
+
+</body>
+</html>
