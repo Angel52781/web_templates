@@ -1,4 +1,4 @@
-name: Deploy Complete Dent to GitHub Pages
+name: Deploy Demo Hub to GitHub Pages
 
 on:
   push:
@@ -18,10 +18,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: 03_demos/completedent_demo
-
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -31,11 +27,94 @@ jobs:
         with:
           node-version: lts/*
 
-      - name: Install dependencies
+      - name: Install Complete Dent dependencies
+        working-directory: 03_demos/completedent_demo
         run: npm ci
 
-      - name: Build
-        run: npm run build -- --base=/web_templates/
+      - name: Build Complete Dent
+        working-directory: 03_demos/completedent_demo
+        run: npm run build -- --base=/web_templates/completedent/
+
+      - name: Install Odonto Yes dependencies
+        working-directory: 03_demos/odontoyes_demo
+        run: npm ci
+
+      - name: Build Odonto Yes
+        working-directory: 03_demos/odontoyes_demo
+        run: npm run build -- --base=/web_templates/odontoyes/
+
+      - name: Prepare Pages artifact
+        run: |
+          mkdir -p site/completedent
+          mkdir -p site/odontoyes
+
+          cp -r 03_demos/completedent_demo/dist/* site/completedent/
+          cp -r 03_demos/odontoyes_demo/dist/* site/odontoyes/
+
+          cat > site/index.html <<'EOF'
+          <!doctype html>
+          <html lang="es">
+          <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>Web Templates Demo Hub</title>
+            <style>
+              body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                background: #f7f7f7;
+                color: #111;
+              }
+              .wrap {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 48px 20px;
+              }
+              h1 {
+                margin-bottom: 8px;
+              }
+              p {
+                color: #444;
+                margin-bottom: 32px;
+              }
+              .grid {
+                display: grid;
+                gap: 16px;
+              }
+              .card {
+                background: white;
+                border-radius: 12px;
+                padding: 20px;
+                box-shadow: 0 4px 16px rgba(0,0,0,.06);
+              }
+              a {
+                color: #0a58ca;
+                text-decoration: none;
+                font-weight: 600;
+              }
+              a:hover {
+                text-decoration: underline;
+              }
+            </style>
+          </head>
+          <body>
+            <div class="wrap">
+              <h1>Demo Hub</h1>
+              <p>Previews privados de landing pages comerciales.</p>
+              <div class="grid">
+                <div class="card">
+                  <h2>Complete Dent</h2>
+                  <a href="./completedent/">Abrir demo</a>
+                </div>
+                <div class="card">
+                  <h2>Odonto Yes! Perú</h2>
+                  <a href="./odontoyes/">Abrir demo</a>
+                </div>
+              </div>
+            </div>
+          </body>
+          </html>
+          EOF
 
       - name: Setup Pages
         uses: actions/configure-pages@v6
@@ -43,7 +122,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: 03_demos/completedent_demo/dist
+          path: site
 
   deploy:
     environment:
