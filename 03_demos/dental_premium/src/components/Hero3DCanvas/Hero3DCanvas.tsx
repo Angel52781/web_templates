@@ -68,8 +68,8 @@ function getLowEndInfo() {
 
   const lowEnd =
     saveData ||
-    (typeof deviceMemory === 'number' && deviceMemory <= 2) ||
-    (typeof hardwareConcurrency === 'number' && hardwareConcurrency <= 2)
+    (typeof deviceMemory === 'number' && deviceMemory <= 4) ||
+    (typeof hardwareConcurrency === 'number' && hardwareConcurrency <= 4)
 
   return { lowEnd, saveData, deviceMemory, hardwareConcurrency }
 }
@@ -159,48 +159,44 @@ export function Hero3DCanvas({
   continuousRotation = true,
   continuousRotationSpeed = 0.22,
 }: Hero3DCanvasProps) {
-  const motionDebug =
-    typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('motionDebug')
+  const devMotionDebug =
+    typeof window !== 'undefined' &&
+    import.meta.env.DEV &&
+    new URLSearchParams(window.location.search).has('motionDebug')
   const stageRef = useRef<HTMLDivElement | null>(null)
   const hudRef = useRef<HTMLDivElement | null>(null)
 
   const shouldFallback = useMemo(() => {
+    if (mode === 'fallback') return true
+    if (mode === 'canvas') return false
     if (typeof window === 'undefined') return true
 
-    const webgl = hasWebGL()
-    if (motionDebug) return !webgl
+    if (import.meta.env.DEV) return false
 
-    if (mode === 'fallback') return true
-    if (mode === 'canvas') return !webgl
-
+    const reducedMotion = getReducedMotionSignal()
     const lowEnd = getLowEndInfo().lowEnd
-    return lowEnd || !webgl
-  }, [mode, motionDebug])
+    const webgl = hasWebGL()
+    return reducedMotion || lowEnd || !webgl
+  }, [mode])
 
   const reducedMotionSignal = useMemo(() => {
     if (typeof window === 'undefined') return true
     return getReducedMotionSignal()
   }, [])
 
-  const reducedMotion = motionDebug ? false : import.meta.env.DEV ? false : reducedMotionSignal
-
-  const coarsePointer = useMemo(() => {
-    if (typeof window === 'undefined') return true
-    return isCoarsePointer()
-  }, [])
+  const reducedMotion = import.meta.env.DEV ? false : reducedMotionSignal
 
   const interactionEnabled = useMemo(() => {
     if (typeof window === 'undefined') return false
     if (shouldFallback) return false
     if (reducedMotion) return false
-    return !coarsePointer
-  }, [coarsePointer, reducedMotion, shouldFallback])
+    return !isCoarsePointer()
+  }, [reducedMotion, shouldFallback])
 
   const idleEnabled = useMemo(() => {
     if (shouldFallback) return false
-    if (coarsePointer) return false
     return !reducedMotion
-  }, [coarsePointer, reducedMotion, shouldFallback])
+  }, [reducedMotion, shouldFallback])
 
   const rotationSensitivityClamped = useMemo(() => {
     const raw = Number.isFinite(rotationSensitivity) ? rotationSensitivity : 5
@@ -214,40 +210,40 @@ export function Hero3DCanvas({
 
   const motionTuning = useMemo<Hero3DMotionTuning>(() => {
     const devBoost = import.meta.env.DEV ? 1.15 : 1
-    const debugBoost = motionDebug ? 4.2 : 1
+    const debugBoost = devMotionDebug ? 4.2 : 1
     return {
       pointerRotY:
-        (motionDebug ? 0.065 : 0.038) * devBoost * debugBoost * rotationSensitivityClamped,
+        (devMotionDebug ? 0.065 : 0.038) * devBoost * debugBoost * rotationSensitivityClamped,
       pointerRotX:
-        (motionDebug ? 0.038 : 0.022) * devBoost * debugBoost * rotationSensitivityClamped,
-      pointerPosX: motionDebug ? 0.08 : 0.045,
-      pointerPosY: motionDebug ? 0.04 : 0.024,
-      pointerMix: motionDebug ? 1 : 0.42,
-      pointerSpeedMod: motionDebug ? 0.28 : 0.11,
-      pointerAmpMod: motionDebug ? 0.5 : 0.18,
-      pointerPhaseMax: motionDebug ? 0.95 : 0.42,
-      autoRotY: motionDebug ? 0.18 : 0.118,
-      autoRotX: motionDebug ? 0.12 : 0.07,
-      autoPosX: motionDebug ? 0.05 : 0.012,
-      autoPosY: motionDebug ? 0.07 : 0.018,
-      autoPosZ: motionDebug ? 0.05 : 0.014,
-      autoSpeed: motionDebug ? 1.2 : 0.92,
+        (devMotionDebug ? 0.038 : 0.022) * devBoost * debugBoost * rotationSensitivityClamped,
+      pointerPosX: devMotionDebug ? 0.08 : 0.045,
+      pointerPosY: devMotionDebug ? 0.04 : 0.024,
+      pointerMix: devMotionDebug ? 1 : 0.42,
+      pointerSpeedMod: devMotionDebug ? 0.28 : 0.11,
+      pointerAmpMod: devMotionDebug ? 0.5 : 0.18,
+      pointerPhaseMax: devMotionDebug ? 0.95 : 0.42,
+      autoRotY: devMotionDebug ? 0.18 : 0.118,
+      autoRotX: devMotionDebug ? 0.12 : 0.07,
+      autoPosX: devMotionDebug ? 0.05 : 0.012,
+      autoPosY: devMotionDebug ? 0.07 : 0.018,
+      autoPosZ: devMotionDebug ? 0.05 : 0.014,
+      autoSpeed: devMotionDebug ? 1.2 : 0.92,
       continuousSpin: Boolean(continuousRotation),
       spinSpeed: continuousRotationSpeedClamped,
       baseRotX: -0.03,
       basePosX: 0.5,
       basePosY: -0.12,
-      damping: motionDebug ? 22 : 5.5,
-      pointerFadeMs: motionDebug ? 1200 : 5200,
-      bypassDamping: motionDebug,
+      damping: devMotionDebug ? 22 : 5.5,
+      pointerFadeMs: devMotionDebug ? 1200 : 5200,
+      bypassDamping: devMotionDebug,
     }
-  }, [continuousRotation, continuousRotationSpeedClamped, motionDebug, rotationSensitivityClamped])
+  }, [continuousRotation, continuousRotationSpeedClamped, devMotionDebug, rotationSensitivityClamped])
 
   const pointerTargetRef = interactionTargetRef ?? stageRef
   const pointerRef = usePointerRef(pointerTargetRef, interactionEnabled)
 
   useEffect(() => {
-    if (!motionDebug) return
+    if (!devMotionDebug) return
     let raf = 0
     const tick = () => {
       const el = hudRef.current
@@ -267,7 +263,7 @@ export function Hero3DCanvas({
     }
     raf = window.requestAnimationFrame(tick)
     return () => window.cancelAnimationFrame(raf)
-  }, [idleEnabled, interactionEnabled, motionDebug, motionTuning.pointerFadeMs, pointerRef])
+  }, [devMotionDebug, idleEnabled, interactionEnabled, motionTuning.pointerFadeMs, pointerRef])
 
   return (
     <div
@@ -284,7 +280,7 @@ export function Hero3DCanvas({
         </div>
       ) : (
         <div className={styles.canvasWrap} data-mode="canvas">
-          {motionDebug ? <div ref={hudRef} className={styles.devHud} aria-hidden="true" /> : null}
+          {devMotionDebug ? <div ref={hudRef} className={styles.devHud} aria-hidden="true" /> : null}
           <Suspense
             fallback={<div className={styles.fallbackArt} role="img" aria-label={fallbackAlt} />}
           >
@@ -295,7 +291,7 @@ export function Hero3DCanvas({
               interactionEnabled={interactionEnabled}
               idleEnabled={idleEnabled}
               motionTuning={motionTuning}
-              debugMotion={motionDebug}
+              debugMotion={devMotionDebug}
             />
           </Suspense>
         </div>
