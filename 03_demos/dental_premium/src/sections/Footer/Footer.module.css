@@ -1,0 +1,151 @@
+.footer {
+  padding: clamp(54px, 6vw, 92px) 24px;
+  background:
+    radial-gradient(900px 560px at 20% 0%, rgba(15, 118, 110, 0.1), transparent 55%),
+    radial-gradient(900px 560px at 80% 10%, rgba(201, 162, 39, 0.08), transparent 55%),
+    linear-gradient(180deg, transparent, rgba(2, 6, 23, 0.02));
+  border-top: 1px solid color-mix(in oklab, var(--border) 55%, transparent);
+}
+
+.inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.card {
+  border-radius: 26px;
+  padding: clamp(18px, 3vw, 26px);
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--surface) 88%, transparent);
+  box-shadow:
+    0 28px 64px rgba(2, 6, 23, 0.09),
+    0 12px 22px rgba(2, 6, 23, 0.06);
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 18px;
+  align-items: center;
+}
+
+.copy {
+  max-width: 64ch;
+}
+
+.kicker {
+  margin: 0 0 10px;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.title {
+  margin: 0 0 10px;
+  font-size: clamp(26px, 2.6vw, 34px);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+
+.sub {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+
+.primary,
+.secondary {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+}
+
+.primary {
+  color: white;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow:
+    0 16px 36px rgba(15, 118, 110, 0.22),
+    0 10px 18px rgba(2, 6, 23, 0.11);
+}
+
+.secondary {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--border);
+}
+
+.primary:hover,
+.secondary:hover {
+  transform: translateY(-1px);
+}
+
+.primary:focus-visible,
+.secondary:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--accent) 70%, white);
+  outline-offset: 3px;
+}
+
+.meta {
+  margin-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+}
+
+.brandMark {
+  width: 26px;
+  height: 26px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+}
+
+.brandName {
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.details {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.attribution {
+  opacity: 0.78;
+}
+
+@media (max-width: 920px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    align-items: stretch;
+  }
+}
