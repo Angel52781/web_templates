@@ -43,13 +43,23 @@ jobs:
         working-directory: 03_demos/odontoyes_demo
         run: npm run build -- --base=/web_templates/odontoyes/
 
+      - name: Install Aurora Dental dependencies
+        working-directory: 03_demos/dental_premium
+        run: npm ci
+
+      - name: Build Aurora Dental
+        working-directory: 03_demos/dental_premium
+        run: npm run build -- --base=/web_templates/aurora-dental/
+
       - name: Prepare Pages artifact
         run: |
           mkdir -p site/completedent
           mkdir -p site/odontoyes
+          mkdir -p site/aurora-dental
 
           cp -r 03_demos/completedent_demo/dist/* site/completedent/
           cp -r 03_demos/odontoyes_demo/dist/* site/odontoyes/
+          cp -r 03_demos/dental_premium/dist/* site/aurora-dental/
 
           cat > site/index.html <<'EOF'
           <!doctype html>
@@ -109,6 +119,11 @@ jobs:
                 <div class="card">
                   <h2>Odonto Yes! Perú</h2>
                   <a href="./odontoyes/">Abrir demo</a>
+                </div>
+                <div class="card">
+                  <h2>Aurora Dental</h2>
+                  <div style="color:#444;margin:8px 0 16px 0;">Demo premium con hero 3D para clínica dental</div>
+                  <a href="./aurora-dental/">Abrir demo</a>
                 </div>
               </div>
             </div>
