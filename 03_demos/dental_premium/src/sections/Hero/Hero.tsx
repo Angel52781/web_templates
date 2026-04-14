@@ -12,14 +12,16 @@ export function Hero({ clinicName = 'Aurora Dental' }: HeroProps) {
   const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
     'Hola, quiero agendar una evaluación. ¿Me pueden compartir horarios disponibles?',
   )}`
+  const heroCanvasMode = import.meta.env.DEV ? 'auto' : 'fallback'
 
   return (
     <section ref={heroRef} className={styles.hero} aria-label={`${clinicName} portada`}>
       <div className={styles.stageWrap} aria-hidden="true">
         <Hero3DCanvas
           presentation="background"
-          mode="auto"
+          mode={heroCanvasMode}
           interactionTargetRef={heroRef}
+          fallbackImageSrc="/images/hero-dental-fallback.png"
           fallbackAlt="Fondo 3D premium"
           canvasAriaLabel="Fondo 3D del hero"
         />
