@@ -168,15 +168,15 @@ export function Hero3DCanvas({
 
   const shouldFallback = useMemo(() => {
     if (mode === 'fallback') return true
-    if (mode === 'canvas') return false
     if (typeof window === 'undefined') return true
 
     if (import.meta.env.DEV) return false
 
-    const reducedMotion = getReducedMotionSignal()
     const lowEnd = getLowEndInfo().lowEnd
     const webgl = hasWebGL()
-    return reducedMotion || lowEnd || !webgl
+    if (!webgl) return true
+    if (mode === 'canvas') return false
+    return lowEnd
   }, [mode])
 
   const reducedMotionSignal = useMemo(() => {
@@ -195,6 +195,7 @@ export function Hero3DCanvas({
 
   const idleEnabled = useMemo(() => {
     if (shouldFallback) return false
+    if (isCoarsePointer()) return false
     return !reducedMotion
   }, [reducedMotion, shouldFallback])
 
